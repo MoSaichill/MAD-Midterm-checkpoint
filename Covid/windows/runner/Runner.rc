@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "covid" "\0"
+            VALUE "FileDescription", "checkpoint3" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "covid" "\0"
+            VALUE "InternalName", "checkpoint3" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "covid.exe" "\0"
-            VALUE "ProductName", "covid" "\0"
+            VALUE "OriginalFilename", "checkpoint3.exe" "\0"
+            VALUE "ProductName", "checkpoint3" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

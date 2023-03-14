@@ -64,7 +64,7 @@ class _FormPageState extends State<FormPage> {
     return Scaffold(
       key: Key("form-page-tag"), // added key t
       appBar: AppBar(
-        title: Text('กรอกประวัติคนไข้'),
+        title: Text('Input Patient Information'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -76,14 +76,14 @@ class _FormPageState extends State<FormPage> {
                 TextFormField(
                   key: Key("firstname-tag"),
                   decoration: InputDecoration(
-                    labelText: 'ชื่อ',
+                    labelText: 'Name',
                   ),
                   controller: _conFirst,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     String? message;
                     if (value == null || value.isEmpty) {
-                      message = 'ต้องการข้อมูล';
+                      message = 'Require Informatiom';
                     }
                     return message;
                   },
@@ -94,14 +94,14 @@ class _FormPageState extends State<FormPage> {
                 TextFormField(
                   key: Key("lastname-tag"),
                   decoration: InputDecoration(
-                    labelText: 'นามสกุล',
+                    labelText: 'Surename',
                   ),
                   controller: _conLast,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     String? message;
                     if (value == null || value.isEmpty) {
-                      message = 'ต้องการข้อมูล';
+                      message = 'Require Information';
                     }
                     return message;
                   },
@@ -112,14 +112,14 @@ class _FormPageState extends State<FormPage> {
                 TextFormField(
                   key: Key("nickname-tag"),
                   decoration: InputDecoration(
-                    labelText: 'ชื่อเล่น',
+                    labelText: 'Nick name',
                   ),
                   controller: _conNick,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     String? message;
                     if (value == null || value.isEmpty) {
-                      message = 'ต้องการข้อมูล';
+                      message = 'Require Information';
                     }
                     return message;
                   },
@@ -127,38 +127,34 @@ class _FormPageState extends State<FormPage> {
                     nickname = value;
                   }),
                 ),
-                // TextFormField(
-                //   key: Key("age-tag"),
-                //   decoration: InputDecoration(
-                //     labelText: 'อายุ',
-                //   ),
-                //   controller: _conAge,
-                //   keyboardType: TextInputType.number,
-                //   onSaved: (String? value) => setState(() {
-                //     age = int.parse(value!);
-                //   }),
-                // ),
-                Text('เพศ'),
+                Text('Gender'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('ชาย'),
+                    Text('Male'),
                     Radio(
                       key: Key('male-tag'),
                       value: 'Male',
                       groupValue: selectedGender,
                       onChanged: (String? value) => _onRadioButtonChange(value),
                     ),
-                    Text('หญิง'),
+                    Text('Female'),
                     Radio(
                       key: Key('female-tag'),
                       value: 'Female',
                       groupValue: selectedGender,
                       onChanged: (String? value) => _onRadioButtonChange(value),
                     ),
+                    Text('Other'),
+                    Radio(
+                      key: Key('other-tag'),
+                      value: 'Other',
+                      groupValue: selectedGender,
+                      onChanged: (String? value) => _onRadioButtonChange(value),
+                    ),
                   ],
                 ),
-                Text('อาการ'),
+                Text('symptom'),
                 Column(
                   children: [
                     CheckboxListTile(
@@ -243,7 +239,7 @@ class _FormPageState extends State<FormPage> {
                         MaterialPageRoute(
                           builder: (_) => ReportPage(
                             firstname: firstname,
-                            lastname:  lastname,
+                            lastname: lastname,
                             nickname: nickname,
                             gender: gender,
                             symtopms: selectedOptions,
@@ -252,7 +248,7 @@ class _FormPageState extends State<FormPage> {
                       );
                     }
                   },
-                  child: Text('บันทึกข้อมูล'),
+                  child: Text('Enter Information'),
                 )
               ],
             ),
@@ -286,18 +282,12 @@ class ReportPage extends StatelessWidget {
     return Scaffold(
       key: Key("report-page-tag"),
       appBar: AppBar(
-        title: Text('รายงาน'),
+        title: Text('Report'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              'assets/logo_v1.png',
-              key: Key('covid-image-tag'),
-              width: 300,
-              height: 300,
-            ),
             covidDetect(symtopms ?? []),
           ],
         ),
@@ -305,7 +295,7 @@ class ReportPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         key: Key('confirm-button-tag'),
         onPressed: () => Navigator.pop(context),
-        child: Text('ยืนยัน'),
+        child: Text('Confirm'),
       ),
     );
   }
@@ -318,17 +308,17 @@ class ReportPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'คุณ $firstname $lastname ($nickname)',
+              'Sir $firstname $lastname ($nickname)',
               key: Key('report-fullname-tag'),
               textAlign: TextAlign.center,
             ),
             Text(
-              'อายุ $age',
+              'Age $age',
               key: Key('report-age-tag'),
               textAlign: TextAlign.center,
             ),
             Text(
-              symtopms.length >= 3 ? 'คุณเป็นโควิท' : 'คุณไม่เป็นโควิท',
+              symtopms.length >= 3 ? 'You got covid!!' : 'You not got Covid',
               key: Key('covid-confirm-tag'),
             )
           ],

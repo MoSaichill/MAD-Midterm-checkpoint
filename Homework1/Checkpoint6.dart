@@ -1,13 +1,14 @@
-void main() {
-  List<int> scores = [8,30,17,18];
-  String studentName = "Alexander Mohamad";
-  int totalscores = CalTotal(scores)  ;
-  print(studentName+"'s total score is " +totalscores.toString());
-}
-int CalTotal(List<int> scores){
-  int totalscores = 0;
-  for (int i in scores){
-    totalscores += i;
+int functionplus(List<int> scores) {
+  int testFunction = 0;
+  for (int scores in scores) {
+    testFunction += scores;
   }
-  return totalscores;
+  return testFunction;
+}
+
+void main() {
+  List<int> scores = [8, 30, 17, 18];
+  String name = "Alexander Mohamad";
+  int testfunction = functionplus(scores);
+  print("$name's total score is $testfunction");
 }
